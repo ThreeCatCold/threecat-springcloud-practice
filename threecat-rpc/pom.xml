@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>threecat-springcloud</artifactId>
+        <groupId>com.threecat.springcloud</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>threecat-rpc</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>threecat-rpc-api</module>
+        <module>threecat-rpc-server</module>
+        <module>threecat-rpc-client</module>
+        <module>threecat-rpc-netty</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.threecat.springcloud</groupId>
+            <artifactId>threecat-commons</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

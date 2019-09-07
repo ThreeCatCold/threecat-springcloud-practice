@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 鼠标放在configuration上可以看到配置顺序 -->
+<configuration>
+	<!-- tips -->
+	<!-- mybatis首先读取property的属性，但是会被覆盖，不建议在这里配置属性 -->
+	<!-- 其次是properties文件中的属性，但也会被覆盖 -->
+	<!-- 最后是parameterType中的属性，这个不会被覆盖，故properties中的属性最好有特殊性，否则可能会被后者覆盖掉 -->
+	<!-- resources：类路径 url：网络路径或者磁盘路径 -->
+	<properties resource="dbconfig.properties"></properties>
+
+	<!-- 设置项 -->
+	<settings>
+		<!-- 驼峰命名映射 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 解决mybatis插入数据库报空值异常（oracle）问题 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+
+		<!--默认是Session，改为statement后源码中每次query会清掉缓存，变相去掉了一级缓存-->
+		<!--关闭一级缓存-->
+		<setting name="localCacheScope" value="STATEMENT" />
+
+		<!-- 打印sql -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+		<!-- 延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 属性的完整加载（所有属性无论是谁，一旦调用全部加载），禁用 属性就会按需加载（需要二次查询的才去二次查询） -->
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
+
+	<!-- 别名，默认别名为类名小写，可以使用注解在实体类上配置别名 -->
+	<typeAliases>
+		<!-- 批量定义 -->
+		<package name="com.localhost.mybatis.entities" />
+	</typeAliases>
+
+	<!-- 多环境配置，default指定使用某种环境，比如开发环境，mysql环境等 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 事务管理器配置：JDBC事务管理（别名），还有一个MANAGED -->
+			<transactionManager type="JDBC" />
+			<!-- 数据库连接池，实现DataSourceFactory可以实现自定义数据源 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${mybatis.driver}"></property>
+				<property name="url" value="${mybatis.url}"></property>
+				<property name="username" value="${mybatis.username}"></property>
+				<property name="password" value="${mybatis.password}"></property>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 支持多数据库厂商 DB_VENDOR:VendorDatabaseIdProvider 获取数据库厂商标识 -->
+	<databaseIdProvider type="DB_VENDOR">
+		<!-- 为数据库不同厂商起别名 -->
+		<property name="MySQL" value="mysql" />
+		<property name="Oracle" value="oracle" />
+	</databaseIdProvider>
+
+	<!--&lt;!&ndash; 映射 &ndash;&gt;-->
+	<!--<mappers>-->
+		<!--&lt;!&ndash; 如果使用class，这个mapper就必须与接口放在同一目录下 &ndash;&gt;-->
+		<!--&lt;!&ndash; 或者用注解 &ndash;&gt;-->
+		<!--<mapper resource="mappers/user/EmployeeMapper.xml"></mapper>-->
+		<!--<mapper resource="mappers/user/EmployeeResultMapMapper.xml"></mapper>-->
+		<!--<mapper resource="mappers/user/DynamicSQLEmployeeMapper.xml"></mapper>-->
+		<!--<mapper resource="mappers/department/DepartmentMapper.xml"></mapper>-->
+		<!--&lt;!&ndash; <package name="com.localhost.mybatis.entities"/> &ndash;&gt;-->
+	<!--</mappers>-->
+
+</configuration>
