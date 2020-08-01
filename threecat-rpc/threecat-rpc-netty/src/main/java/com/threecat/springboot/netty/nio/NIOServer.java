@@ -53,8 +53,8 @@ public class NIOServer implements InitializingBean
 				while (iter.hasNext())
 				{
 					SelectionKey key = iter.next();
-					iter.remove();
 					process(key);
+					iter.remove();
 				}
 			}
 		}

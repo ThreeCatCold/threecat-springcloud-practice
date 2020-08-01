@@ -16,6 +16,8 @@
         <module>threecat-rpc-server</module>
         <module>threecat-rpc-client</module>
         <module>threecat-rpc-netty</module>
+        <module>threecat-rpc-nio</module>
+        <module>threecat-boot-runner</module>
     </modules>
 
     <dependencies>

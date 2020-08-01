@@ -9,7 +9,7 @@ public class HttpRequestUtils
 {
 	private static final String UNKNOWN = "unknown";
 
-	public String getIpAddress()
+	public static String getIpAddress()
 	{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();
@@ -28,4 +28,12 @@ public class HttpRequestUtils
 		}
 		return ip;
 	}
+
+	public static String getRequestUrl()
+	{
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+		return request.getRequestURL().toString();
+	}
+
 }

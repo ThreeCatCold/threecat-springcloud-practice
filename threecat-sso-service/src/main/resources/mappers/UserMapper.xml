@@ -9,4 +9,10 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 		FROM t_user
 		WHERE user_id = #{user_id}
 	</select>
+
+	<select id="selectByUsername" parameterType="varchar" resultType="user">
+		SELECT *
+		FROM t_user
+		WHERE user_name = #{user_name}
+	</select>
 </mapper>

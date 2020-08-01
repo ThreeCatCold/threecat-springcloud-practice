@@ -8,4 +8,10 @@ public class AppConfig
 {
 	@Value("${application.rate.per-second-request}")
 	Double perSecondRequest;
+
+	@Value("${server.port}")
+	int serverPort;
+
+	@Value("${spring.application.name}")
+	String serverName;
 }
